@@ -1,0 +1,8 @@
+spring:
+  datasource:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # Specify the dialect for Hibernate
+    generate-ddl: true  # Whether to generate DDL automatically
+    hibernate:
+      ddl-auto: update  # Update the schema based on entity classes automatically
+    show-sql: true  # Whether to log SQL statements
