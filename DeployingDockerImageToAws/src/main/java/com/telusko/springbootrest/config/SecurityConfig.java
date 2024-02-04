@@ -3,7 +3,6 @@ package com.telusko.springbootrest.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -40,10 +39,13 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(customizer -> customizer.disable())
-				.authorizeHttpRequests(request -> request.requestMatchers("/load").permitAll().
+				.authorizeHttpRequests(request -> 
+				          request
+				          .requestMatchers("/load").permitAll()
+				          .requestMatchers("/register").permitAll().
 						anyRequest().authenticated())
-				.httpBasic(Customizer.withDefaults())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+				        .httpBasic(Customizer.withDefaults())
+				       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 		return http.build();
 	}
